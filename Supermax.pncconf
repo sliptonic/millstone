@@ -247,7 +247,7 @@
   <property name="max_linear_velocity" type="float" value="1.0"/>
   <property name="max_spindle_override" type="float" value="1.0"/>
   <property name="maxspeeddisplay" type="float" value="1000.0"/>
-  <property name="md5sums" type="eval" value="[('/home/brad/linuxcnc/configs/Supermax/README', '443fa9e833f6ae5bb62f70e38de52886'), ('/home/brad/linuxcnc/configs/Supermax/Supermax.hal', '3db687211f67d477d8108e1de70d4091'), ('/home/brad/linuxcnc/configs/Supermax/Supermax.ini', '9929644552242a39bc562022ddd5ef5d')]"/>
+  <property name="md5sums" type="eval" value="[('/home/brad/linuxcnc/configs/Supermax/README', 'ddd0c53b1eb0557f69e6ec4ea2245760'), ('/home/brad/linuxcnc/configs/Supermax/Supermax.hal', 'dc50b0ec0bb48bca49638534c42398cf'), ('/home/brad/linuxcnc/configs/Supermax/Supermax.ini', '3a63f9d65bc3ddf673ad4c40bf42781f')]"/>
   <property name="mesa0_3pwm_frequency" type="float" value="20000.0"/>
   <property name="mesa0_boardtitle" type="string" value="5i25"/>
   <property name="mesa0_currentfirmwaredata" type="eval" value="['5i25', '5i25', '7i77x2', '5i25', 'hm2_pci', 12, 3, 0, 10, 0, 3, 0, 0, 0, 2, 1, 6, 0, 0, 0, 0, 0, 0, 0, 0, 1, 34, 33, 200, [3, 2], [u'GPIO Input', 0], [u'SMARTSERIAL-P2-TX', 0], [u'SMARTSERIAL-P2-RX', 0], [u'7i77 Analog   (SS1)', 0], [u'SMARTSERIAL-P1-RX', 0], [u'7i77 I/O (SS0)', 0], [u'SMARTSERIAL-P0-RX', 0], [u'mux select', 0], [u'Muxed Encoder 0', 0], [u'Muxed Encoder 1', 0], [u'muxed enc', 0], [u'Muxed Encoder 0', 1], [u'Muxed Encoder 1', 1], [u'muxed enc', 1], [u'Muxed Encoder 0', 2], [u'Muxed Encoder 1', 2], [u'muxed enc', 2], (u'Not Used', 0), (u'Not Used', 0), (u'Not Used', 0), (u'Not Used', 0), (u'Not Used', 0), (u'Not Used', 0), (u'Not Used', 0), [u'GPIO Input', 0], [u'SMARTSERIAL-P5-TX', 0], [u'SMARTSERIAL-P5-RX', 0], [u'7i77 Analog   (SS4)', 0], [u'SMARTSERIAL-P4-RX', 0], [u'7i77 I/O (SS3)', 0], [u'SMARTSERIAL-P3-RX', 0], [u'mux select', 3], [u'Muxed Encoder 0', 3], [u'Muxed Encoder 1', 3], [u'muxed enc', 3], [u'Muxed Encoder 0', 4], [u'Muxed Encoder 1', 4], [u'muxed enc', 4], [u'Muxed Encoder 0', 5], [u'Muxed Encoder 1', 5], [u'muxed enc', 5], (u'Not Used', 0), (u'Not Used', 0), (u'Not Used', 0), (u'Not Used', 0), (u'Not Used', 0), (u'Not Used', 0), (u'Not Used', 0)]"/>
@@ -3635,12 +3635,12 @@
   <property name="x8i20maxcurrent" type="float" value="5.0"/>
   <property name="xD" type="float" value="0.0"/>
   <property name="xFF0" type="float" value="0.0"/>
-  <property name="xFF1" type="float" value="1.8"/>
-  <property name="xFF2" type="float" value="0.0"/>
+  <property name="xFF1" type="float" value="1.58"/>
+  <property name="xFF2" type="float" value="0.005"/>
   <property name="xI" type="float" value="0.0"/>
-  <property name="xP" type="float" value="100.0"/>
+  <property name="xP" type="float" value="250.0"/>
   <property name="xbacklash" type="float" value="0.0"/>
-  <property name="xbias" type="float" value="0.017"/>
+  <property name="xbias" type="float" value="0.0"/>
   <property name="xbldc_absolute_feedback" type="bool" value="False"/>
   <property name="xbldc_config" type="string" value=""/>
   <property name="xbldc_digital_output" type="bool" value="False"/>
@@ -3667,7 +3667,7 @@
   <property name="xbldc_use_index" type="bool" value="False"/>
   <property name="xcompfilename" type="string" value="xcompensation"/>
   <property name="xcomptype" type="int" value="0"/>
-  <property name="xdeadband" type="float" value="0.0002"/>
+  <property name="xdeadband" type="float" value="0.0001"/>
   <property name="xdirhold" type="float" value="1000.0"/>
   <property name="xdirsetup" type="float" value="1000.0"/>
   <property name="xdrivertype" type="string" value="custom"/>
@@ -3681,7 +3681,7 @@
   <property name="xencoderscale" type="float" value="10000.0"/>
   <property name="xhomefinalvel" type="float" value="0.0"/>
   <property name="xhomelatchvel" type="float" value="0.0166666666667"/>
-  <property name="xhomepos" type="float" value="0.0"/>
+  <property name="xhomepos" type="float" value="12.25"/>
   <property name="xhomesearchvel" type="float" value="0.816666666667"/>
   <property name="xhomesw" type="float" value="0.0"/>
   <property name="xinvertencoder" type="bool" value="False"/>
@@ -3717,8 +3717,8 @@
   <property name="y8i20maxcurrent" type="float" value="5.0"/>
   <property name="yD" type="float" value="0.0"/>
   <property name="yFF0" type="float" value="0.0"/>
-  <property name="yFF1" type="float" value="1.8"/>
-  <property name="yFF2" type="float" value="0.02"/>
+  <property name="yFF1" type="float" value="1.45"/>
+  <property name="yFF2" type="float" value="0.015"/>
   <property name="yI" type="float" value="0.0"/>
   <property name="yP" type="float" value="400.0"/>
   <property name="ybacklash" type="float" value="0.0"/>
@@ -3749,7 +3749,7 @@
   <property name="ybldc_use_index" type="bool" value="False"/>
   <property name="ycompfilename" type="string" value="ycompensation"/>
   <property name="ycomptype" type="int" value="0"/>
-  <property name="ydeadband" type="float" value="0.0002"/>
+  <property name="ydeadband" type="float" value="0.0001"/>
   <property name="ydirhold" type="float" value="1000.0"/>
   <property name="ydirsetup" type="float" value="1000.0"/>
   <property name="ydrivertype" type="string" value="custom"/>
@@ -3765,7 +3765,7 @@
   <property name="yhomelatchvel" type="float" value="0.0166666666667"/>
   <property name="yhomepos" type="float" value="0.0"/>
   <property name="yhomesearchvel" type="float" value="0.816666666667"/>
-  <property name="yhomesw" type="float" value="10.25"/>
+  <property name="yhomesw" type="float" value="6.0"/>
   <property name="yinvertencoder" type="bool" value="True"/>
   <property name="yinvertmotor" type="bool" value="False"/>
   <property name="ylatchdir" type="int" value="0"/>
@@ -3799,7 +3799,7 @@
   <property name="z8i20maxcurrent" type="float" value="5.0"/>
   <property name="zD" type="float" value="0.0"/>
   <property name="zFF0" type="float" value="0.0"/>
-  <property name="zFF1" type="float" value="1.5"/>
+  <property name="zFF1" type="float" value="1.58"/>
   <property name="zFF2" type="float" value="0.018"/>
   <property name="zI" type="float" value="0.0"/>
   <property name="zP" type="float" value="300.0"/>
@@ -3831,7 +3831,7 @@
   <property name="zbldc_use_index" type="bool" value="False"/>
   <property name="zcompfilename" type="string" value="zcompensation"/>
   <property name="zcomptype" type="int" value="0"/>
-  <property name="zdeadband" type="float" value="0.0002"/>
+  <property name="zdeadband" type="float" value="0.0001"/>
   <property name="zdirhold" type="float" value="1000.0"/>
   <property name="zdirsetup" type="float" value="1000.0"/>
   <property name="zdrivertype" type="string" value="custom"/>
