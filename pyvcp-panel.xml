@@ -5,31 +5,27 @@
          <bd>6</bd>
                 <label>
                         <text>"Spindle Speed:"</text>
-                        <font>("Helvetica",20)</font>
+                        <font>("Helvetica",10)</font>
                 </label>
      		<meter>
       			<halpin>"spindle-speed"</halpin>
-      			<text>"Spindle"</text>
-      			<subtext>"RPM"</subtext>
-      			<size>200</size>
+      			<text>"RPM"</text>
+      			<subtext>""</subtext>
+      			<size>150</size>
       			<min_>0</min_>
       			<max_>6000</max_>
-      			<majorscale>1000</majorscale>
-      			<minorscale>100</minorscale>
+      			<majorscale>1500</majorscale>
+      			<minorscale>500</minorscale>
       			<region1>0,10,"yellow"</region1>
     		</meter>
-                <label>
-                        <text>"Spindle-At-Speed:"</text>
-                        <font>("Helvetica",20)</font>
-                </label>
                 <hbox>
-                    <label>
-                            <text>"             "</text>
-                            <font>("Helvetica",20)</font>
-                    </label>
+                <label>
+                        <text>"At-Speed:  "</text>
+                        <font>("Helvetica",10)</font>
+                </label>
                     <led>
                         <halpin>"spindle-at-speed-led"</halpin> 
-                        <size>30</size> 
+                        <size>15</size> 
                         <on_color>"green"</on_color>
                         <off_color>"red"</off_color>
                     </led>
