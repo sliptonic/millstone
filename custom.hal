@@ -13,3 +13,4 @@ net estop-loopin iocontrol.0.user-enable-out => estop-latch.0.ok-in
 net estop-reset iocontrol.0.user-request-enable => estop-latch.0.reset
 net remote-estop estop-latch.0.fault-in <=  hm2_5i25.0.7i77.0.0.input-00
 net spindle-at-speed motion.spindle-at-speed <= hm2_5i25.0.7i77.0.0.input-01
+

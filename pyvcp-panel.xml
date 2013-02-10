@@ -31,4 +31,8 @@
                     </led>
                 </hbox>
         </vbox>
+<button>
+    <halpin>"retract-btn"</halpin>
+    <text>"Retract Spindle"</text> 
+</button>
 </pyvcp>
