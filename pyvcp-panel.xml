@@ -35,4 +35,12 @@
     <halpin>"retract-btn"</halpin>
     <text>"Retract Spindle"</text> 
 </button>
+<button>
+    <halpin>"fast-btn"</halpin>
+    <text>"3000"</text> 
+</button>
+<button>
+    <halpin>"slow-btn"</halpin>
+    <text>"800"</text> 
+</button>
 </pyvcp>
