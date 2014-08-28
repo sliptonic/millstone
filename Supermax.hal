@@ -72,7 +72,7 @@ net min-z     <=  hm2_5i25.0.7i77.0.0.input-14-not
 net max-z     <=  hm2_5i25.0.7i77.0.0.input-15-not
 
 # --- PROBE INPUT ---
-net probe-in  <=  hm2_5i25.0.7i77.0.0.input-02 
+net probe-in  <=  hm2_5i25.0.7i77.0.0.input-02-not
 
 
 #*******************
