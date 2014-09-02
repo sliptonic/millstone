@@ -1,4 +1,4 @@
-%
+O<probe_hole> sub
 G21 F400
 
 #1000=100 ;max radius
@@ -68,5 +68,5 @@ G90 G0 Y#1002
 #1011=[sqrt[[#1001*#1001]+[#1002*#1002]]]
 
 (debug,Xdia #1007 Ydia #1008 Dia #1009 Ang #1010 Dist #1011)
-
-%
+O<probe_hole> endsub
+M2

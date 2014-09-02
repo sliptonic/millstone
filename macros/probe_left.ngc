@@ -1,10 +1,11 @@
-%
+O<probe_left> sub 
 G21
 G91 G38.2 F400 X+10
 G90 G0 X[#5061-0.254]
 G91 G38.2 F5 X+0.5
 G90 G0 X[#5061-5+[1]]
 (debug,Spindle center is X-5 from the edge)
-%
+O<probe_left> endsub
+M2 
 
 
