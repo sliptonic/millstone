@@ -3,15 +3,15 @@
 
 # estop
 loadrt estop_latch
-addf estop-latch.0 servo-thread
+addf estop_latch.0 servo-thread
 
 unlinkp iocontrol.0.emc-enable-in
 unlinkp iocontrol.0.user-enable-out
 
-net estop-loopout iocontrol.0.emc-enable-in <= estop-latch.0.ok-out
-net estop-loopin iocontrol.0.user-enable-out => estop-latch.0.ok-in
-net estop-reset iocontrol.0.user-request-enable => estop-latch.0.reset
-net remote-estop estop-latch.0.fault-in <=  hm2_5i25.0.7i77.0.0.input-00
+net estop-loopout iocontrol.0.emc-enable-in <= estop_latch.0.ok-out
+net estop-loopin iocontrol.0.user-enable-out => estop_latch.0.ok-in
+net estop-reset iocontrol.0.user-request-enable => estop_latch.0.reset
+net remote-estop estop_latch.0.fault-in <=  hm2_5i25.0.7i77.0.0.input-00
 net spindle-at-speed motion.spindle-at-speed <= hm2_5i25.0.7i77.0.0.input-01
 
 # --- COOLANT-FLOOD ---
