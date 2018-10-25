@@ -3,9 +3,9 @@
 # overwritten when you run PNCconf again
 
 loadrt trivkins
-loadrt tp
-loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[TRAJ]AXES tp=tp kins=trivkins
-loadrt probe_parport
+#loadrt tp
+loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[TRAJ]AXES 
+#loadrt probe_parport
 loadrt hostmot2
 loadrt hm2_pci config=" num_encoders=5 num_pwmgens=0 num_3pwmgens=0 num_stepgens=5 sserial_port_0=100xxxxx " 
 setp     hm2_5i25.0.watchdog.timeout_ns 10000000
@@ -22,7 +22,7 @@ addf pid.z.do-pid-calcs servo-thread
 addf abs.spindle servo-thread
 addf lowpass.spindle servo-thread
 addf hm2_5i25.0.write         servo-thread
-addf hm2_5i25.0.pet_watchdog  servo-thread
+#addf hm2_5i25.0.pet_watchdog  servo-thread
 
 # external output signals
 
