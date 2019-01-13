@@ -12,6 +12,7 @@ setp     hm2_5i25.0.watchdog.timeout_ns 10000000
 loadrt pid names=pid.x,pid.y,pid.z
 loadrt abs names=abs.spindle
 loadrt lowpass names=lowpass.spindle
+loadrt near
 
 addf hm2_5i25.0.read servo-thread
 addf motion-command-handler servo-thread
@@ -22,6 +23,7 @@ addf pid.z.do-pid-calcs servo-thread
 addf abs.spindle servo-thread
 addf lowpass.spindle servo-thread
 addf hm2_5i25.0.write         servo-thread
+addf near.0 		servo-thread
 #addf hm2_5i25.0.pet_watchdog  servo-thread
 
 # external output signals
@@ -277,10 +279,12 @@ setp   hm2_5i25.0.7i77.0.1.analogout5-scalemax  [SPINDLE_9]OUTPUT_SCALE
 setp   hm2_5i25.0.7i77.0.1.analogout5-minlim    [SPINDLE_9]OUTPUT_MIN_LIMIT
 setp   hm2_5i25.0.7i77.0.1.analogout5-maxlim    [SPINDLE_9]OUTPUT_MAX_LIMIT
 
+setp near.0.scale 1.01
 
-net spindle-vel-cmd     => hm2_5i25.0.7i77.0.1.analogout5
-net machine-is-enabled      => hm2_5i25.0.7i77.0.1.spinena
 
+net spindle-vel-cmd-abs     => hm2_5i25.0.7i77.0.1.analogout5
+net spindle-on <= motion.spindle-on => hm2_5i25.0.7i77.0.1.spinena
+net spindle-velocity <= hm2_5i25.0.encoder.03.velocity
 # ---setup spindle control signals---
 
 net spindle-vel-cmd-rps    <=  motion.spindle-speed-out-rps
@@ -302,7 +306,18 @@ sets spindle-at-speed true
 #  COMMANDED velocity is signed so we use absolute component to remove sign
 
 net spindle-vel-cmd         =>    abs.spindle.in
-net absolute-spindle-vel    <=    abs.spindle.out
+net spindle-vel-cmd-abs    <=    abs.spindle.out
+
+setp    hm2_5i25.0.encoder.03.counter-mode 0
+setp    hm2_5i25.0.encoder.03.filter 1
+setp    hm2_5i25.0.encoder.03.index-invert 0
+setp    hm2_5i25.0.encoder.03.index-mask 0
+setp    hm2_5i25.0.encoder.03.index-mask-invert 0
+setp    hm2_5i25.0.encoder.03.scale  [SPINDLE_9]ENCODER_SCALE
+
+net spindle-cmd => near.0.in1
+net spindle-velocity => near.0.in2
+net spindle-at-speed motion.spindle-at-speed <= near.0.out
 
 #******************************
 # connect miscellaneous signals
