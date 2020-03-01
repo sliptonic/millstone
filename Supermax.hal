@@ -100,7 +100,7 @@ net x-index-enable  <=>  pid.x.index-enable
 net x-enable       => pid.x.enable
 net x-output       => pid.x.output
 net x-pos-cmd      => pid.x.command
-net x-vel-fb       => pid.x.command-deriv
+#net x-vel-fb       => pid.x.command-deriv
 net x-pos-fb       => pid.x.feedback
 
 # ---PWM Generator signals/setup---
@@ -154,7 +154,7 @@ net y-index-enable  <=>  pid.y.index-enable
 net y-enable       => pid.y.enable
 net y-output       => pid.y.output
 net y-pos-cmd      => pid.y.command
-net y-vel-fb       => pid.y.command-deriv
+#net y-vel-fb       => pid.y.command-deriv
 net y-pos-fb       => pid.y.feedback
 
 # ---PWM Generator signals/setup---
@@ -206,7 +206,7 @@ net z-index-enable  <=>  pid.z.index-enable
 net z-enable       => pid.z.enable
 net z-output       => pid.z.output
 net z-pos-cmd      => pid.z.command
-net z-vel-fb       => pid.z.command-deriv
+#net z-vel-fb       => pid.z.command-deriv
 net z-pos-fb       => pid.z.feedback
 
 # ---PWM Generator signals/setup---
