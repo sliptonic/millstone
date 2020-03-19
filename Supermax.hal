@@ -13,6 +13,8 @@ setp     hm2_5i25.0.watchdog.timeout_ns 10000000
 loadrt pid names=pid.x,pid.y,pid.z
 loadrt abs names=abs.spindle
 loadrt lowpass names=lowpass.spindle
+loadrt or2
+addf or2.0 servo-thread
 
 addf hm2_5i25.0.read servo-thread
 addf motion-command-handler servo-thread
@@ -79,7 +81,11 @@ net min-z     <=  hm2_5i25.0.7i77.0.0.input-14-not
 net max-z     <=  hm2_5i25.0.7i77.0.0.input-15-not
 
 # --- PROBE INPUT ---
-net probe-in  <=  hm2_5i25.0.7i77.0.0.input-02
+net probesig1 or2.0.in0 <= hm2_5i25.0.7i77.0.0.input-02
+net probesig2 or2.0.in1 <= hm2_5i25.0.7i77.0.0.input-04-not
+
+#net probe-in  <=  hm2_5i25.0.7i77.0.0.input-02
+net probe-in  <=  or2.0.out
 
 
 #*******************
