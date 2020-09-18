@@ -1,7 +1,7 @@
 O<probe_hole> sub
 G21 F400
 
-#1000=50 ;max radius
+#1000=25 ;max radius
 
 G91 G38.3 Z.00001
 #1001=#5061
