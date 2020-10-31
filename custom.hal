@@ -3,7 +3,9 @@
 
 # estop
 loadrt estop_latch
+loadrt scale 
 addf estop-latch.0 servo-thread
+addf scale.0 servo-thread
 
 unlinkp iocontrol.0.emc-enable-in
 unlinkp iocontrol.0.user-enable-out
@@ -20,8 +22,13 @@ net coolant-flood hm2_5i25.0.7i77.0.0.output-05
 # --- VFD modbus ---
 loadusr -Wn  vfd hy_vfd -n vfd -d /dev/ttyUSB0 -p none -r 19200
 
-net spindle-cmd spindle.0.speed-out     =>  vfd.speed-command
-#net spindle-cmd-rpm-abs  		=>  vfd.speed-command
+setp scale.0.gain 0.645
+setp scale.0.offset 0.0
+
+
+#net spindle-cmd spindle.0.speed-out     =>  vfd.speed-command
+net spindle-cmd spindle.0.speed-out     =>  scale.0.in
+net spindle-scale scale.0.out           =>  vfd.speed-command
 net spindle-cw spindle.0.forward   	=>  vfd.spindle-forward
 net spindle-ccw spindle.0.reverse  	=>  vfd.spindle-reverse
 net on spindle.0.on  		  	=>  vfd.spindle-on
