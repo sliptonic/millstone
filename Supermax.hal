@@ -11,8 +11,8 @@ loadrt hostmot2
 loadrt hm2_pci config=" num_encoders=5 num_pwmgens=0 num_3pwmgens=0 num_stepgens=5 sserial_port_0=100xxxxx " 
 setp     hm2_5i25.0.watchdog.timeout_ns 10000000
 loadrt pid names=pid.x,pid.y,pid.z
-loadrt abs names=abs.spindle
-loadrt lowpass names=lowpass.spindle
+#loadrt abs names=abs.spindle
+#loadrt lowpass names=lowpass.spindle
 loadrt or2
 addf or2.0 servo-thread
 
@@ -22,8 +22,8 @@ addf motion-controller servo-thread
 addf pid.x.do-pid-calcs servo-thread
 addf pid.y.do-pid-calcs servo-thread
 addf pid.z.do-pid-calcs servo-thread
-addf abs.spindle servo-thread
-addf lowpass.spindle servo-thread
+#addf abs.spindle servo-thread
+#addf lowpass.spindle servo-thread
 addf hm2_5i25.0.write         servo-thread
 #addf hm2_5i25.0.pet_watchdog  servo-thread
 
@@ -31,16 +31,16 @@ addf hm2_5i25.0.write         servo-thread
 
 
 # --- SPINDLE-CW ---
-net spindle-cw hm2_5i25.0.7i77.0.0.output-00
+#net spindle-cw hm2_5i25.0.7i77.0.0.output-00
 
 # --- SPINDLE-CCW ---
-net spindle-ccw hm2_5i25.0.7i77.0.0.output-01
+#net spindle-ccw hm2_5i25.0.7i77.0.0.output-01
 
 # --- SPINDLE-ON ---
-net spindle-on hm2_5i25.0.7i77.0.0.output-02
+#net spindle-on hm2_5i25.0.7i77.0.0.output-02
 
 # --- SPINDLE-BRAKE ---
-net spindle-brake hm2_5i25.0.7i77.0.0.output-03
+#net spindle-brake hm2_5i25.0.7i77.0.0.output-03
 
 # --- MACHINE-IS-ENABLED ---
 net machine-is-enabled hm2_5i25.0.7i77.0.0.output-04
@@ -280,36 +280,36 @@ net a-pos-limit     =>  joint.3.pos-lim-sw-in
 
 # ---PWM Generator signals/setup---
 
-setp   hm2_5i25.0.7i77.0.1.analogout5-scalemax  [SPINDLE_9]OUTPUT_SCALE
-setp   hm2_5i25.0.7i77.0.1.analogout5-minlim    [SPINDLE_9]OUTPUT_MIN_LIMIT
-setp   hm2_5i25.0.7i77.0.1.analogout5-maxlim    [SPINDLE_9]OUTPUT_MAX_LIMIT
+#setp   hm2_5i25.0.7i77.0.1.analogout5-scalemax  [SPINDLE_9]OUTPUT_SCALE
+#setp   hm2_5i25.0.7i77.0.1.analogout5-minlim    [SPINDLE_9]OUTPUT_MIN_LIMIT
+#setp   hm2_5i25.0.7i77.0.1.analogout5-maxlim    [SPINDLE_9]OUTPUT_MAX_LIMIT
 
 
-net spindle-vel-cmd     => hm2_5i25.0.7i77.0.1.analogout5
-net machine-is-enabled      => hm2_5i25.0.7i77.0.1.spinena
+#net spindle-vel-cmd     => hm2_5i25.0.7i77.0.1.analogout5
+#net machine-is-enabled      => hm2_5i25.0.7i77.0.1.spinena
 
 # ---setup spindle control signals---
 
-net spindle-vel-cmd-rps    <=  spindle.0.speed-out-rps
-net spindle-vel-cmd        <=  spindle.0.speed-out
-net spindle-on             <=  spindle.0.on
-net spindle-cw             <=  spindle.0.forward
-net spindle-ccw            <=  spindle.0.reverse
-net spindle-brake          <=  spindle.0.brake
-net spindle-revs           =>  spindle.0.revs
-net spindle-at-speed       =>  spindle.0.at-speed
-net spindle-vel-fb         =>  spindle.0.speed-in
-net spindle-index-enable  <=>  spindle.0.index-enable
+#net spindle-vel-cmd-rps    <=  spindle.0.speed-out-rps
+#net spindle-vel-cmd        <=  spindle.0.speed-out
+#net spindle-on             <=  spindle.0.on
+#net spindle-cw             <=  spindle.0.forward
+#net spindle-ccw            <=  spindle.0.reverse
+#net spindle-brake          <=  spindle.0.brake
+#net spindle-revs           =>  spindle.0.revs
+#net spindle-at-speed       =>  spindle.0.at-speed
+#net spindle-vel-fb         =>  spindle.0.speed-in
+#net spindle-index-enable  <=>  spindle.0.index-enable
 
 # ---Setup spindle at speed signals---
 
-sets spindle-at-speed true
+#sets spindle-at-speed true
 
 #  Use COMMANDED spindle velocity from LinuxCNC because no spindle encoder was specified
 #  COMMANDED velocity is signed so we use absolute component to remove sign
 
-net spindle-vel-cmd         =>    abs.spindle.in
-net absolute-spindle-vel    <=    abs.spindle.out
+#net spindle-vel-cmd         =>    abs.spindle.in
+#net absolute-spindle-vel    <=    abs.spindle.out
 
 #******************************
 # connect miscellaneous signals

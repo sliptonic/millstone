@@ -4,3 +4,6 @@
 net remote-retract-spindle halui.mdi-command-00 <= pyvcp.retract-btn
 net remote-fast-spindle halui.mdi-command-01 <= pyvcp.fast-btn
 net remote-slow-spindle halui.mdi-command-02 <= pyvcp.slow-btn
+
+net spindle-at-speed => vfd.spindle-at-speed
+setp vfd.enable 1

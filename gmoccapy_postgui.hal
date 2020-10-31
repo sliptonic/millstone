@@ -16,3 +16,6 @@ net tool-change      gmoccapy.toolchange-change   <=  iocontrol.0.tool-change
 net tool-changed     gmoccapy.toolchange-changed  <=  iocontrol.0.tool-changed
 net tool-prep-number gmoccapy.toolchange-number   <=  iocontrol.0.tool-prep-number
 net tool-prepare-loopback iocontrol.0.tool-prepare => iocontrol.0.tool-prepared
+
+net spindle-at-speed => vfd.spindle-at-speed
+setp vfd.enable 1

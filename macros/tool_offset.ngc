@@ -1,0 +1,13 @@
+O<tool_offset> sub
+#<_probe_offset> = 65.000
+G21
+G49
+G91 G38.2 F200 Z-20
+G90 G0 Z[#5063+2.0]
+G91 G38.2 F5 Z-2.5
+(debug, point is #5063)
+G10 L1 P#5400 Z[#5063-#<_probe_offset>]
+(debug, setting offset to[#5063-#<_probe_offset>)
+G91 G0 Z10
+O<tool_offset> endsub
+M2
