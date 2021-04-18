@@ -1,7 +1,0 @@
-T1 P1 ;Probe        
-T2 P2 Z-1.265400 ;1/4 inch 2 flute upcut.                      
-T3 P3 Z-0.353300 ;9/16 inch 4 flute                  
-T4 P4 Z-1.279500 ;face mill       
-T5 P5 Z-0.223500 ;3/4 inch 4 flute      
-T6 P0 Z-1.799900 ;3/16 inch 4 flute     
-T7 P7 Z-0.764491 ;1/8 in collet 
