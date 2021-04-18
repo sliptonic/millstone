@@ -40,7 +40,7 @@ addf hm2_5i25.0.write         servo-thread
 #net spindle-on hm2_5i25.0.7i77.0.0.output-02
 
 # --- SPINDLE-BRAKE ---
-#net spindle-brake hm2_5i25.0.7i77.0.0.output-03
+net spindle-brake hm2_5i25.0.7i77.0.0.output-03
 
 # --- MACHINE-IS-ENABLED ---
 net machine-is-enabled hm2_5i25.0.7i77.0.0.output-04
@@ -82,9 +82,7 @@ net max-z     <=  hm2_5i25.0.7i77.0.0.input-15-not
 
 # --- PROBE INPUT ---
 net probesig1 or2.0.in0 <= hm2_5i25.0.7i77.0.0.input-02
-net probesig2 or2.0.in1 <= hm2_5i25.0.7i77.0.0.input-04-not
-
-#net probe-in  <=  hm2_5i25.0.7i77.0.0.input-02
+net probesig2 or2.0.in1 <= hm2_5i25.0.7i77.0.0.input-03
 net probe-in  <=  or2.0.out
 
 
@@ -106,7 +104,6 @@ net x-index-enable  <=>  pid.x.index-enable
 net x-enable       => pid.x.enable
 net x-output       => pid.x.output
 net x-pos-cmd      => pid.x.command
-#net x-vel-fb       => pid.x.command-deriv
 net x-pos-fb       => pid.x.feedback
 
 # ---PWM Generator signals/setup---
@@ -160,7 +157,6 @@ net y-index-enable  <=>  pid.y.index-enable
 net y-enable       => pid.y.enable
 net y-output       => pid.y.output
 net y-pos-cmd      => pid.y.command
-#net y-vel-fb       => pid.y.command-deriv
 net y-pos-fb       => pid.y.feedback
 
 # ---PWM Generator signals/setup---
@@ -212,7 +208,6 @@ net z-index-enable  <=>  pid.z.index-enable
 net z-enable       => pid.z.enable
 net z-output       => pid.z.output
 net z-pos-cmd      => pid.z.command
-#net z-vel-fb       => pid.z.command-deriv
 net z-pos-fb       => pid.z.feedback
 
 # ---PWM Generator signals/setup---
@@ -278,38 +273,15 @@ net a-pos-limit     =>  joint.3.pos-lim-sw-in
 #  SPINDLE S
 #*******************
 
-# ---PWM Generator signals/setup---
-
-#setp   hm2_5i25.0.7i77.0.1.analogout5-scalemax  [SPINDLE_9]OUTPUT_SCALE
-#setp   hm2_5i25.0.7i77.0.1.analogout5-minlim    [SPINDLE_9]OUTPUT_MIN_LIMIT
-#setp   hm2_5i25.0.7i77.0.1.analogout5-maxlim    [SPINDLE_9]OUTPUT_MAX_LIMIT
-
-
-#net spindle-vel-cmd     => hm2_5i25.0.7i77.0.1.analogout5
-#net machine-is-enabled      => hm2_5i25.0.7i77.0.1.spinena
-
 # ---setup spindle control signals---
 
-#net spindle-vel-cmd-rps    <=  spindle.0.speed-out-rps
-#net spindle-vel-cmd        <=  spindle.0.speed-out
-#net spindle-on             <=  spindle.0.on
-#net spindle-cw             <=  spindle.0.forward
-#net spindle-ccw            <=  spindle.0.reverse
-#net spindle-brake          <=  spindle.0.brake
-#net spindle-revs           =>  spindle.0.revs
-#net spindle-at-speed       =>  spindle.0.at-speed
-#net spindle-vel-fb         =>  spindle.0.speed-in
-#net spindle-index-enable  <=>  spindle.0.index-enable
+net spindle-brake          <=  spindle.0.brake
+net spindle-at-speed       =>  spindle.0.at-speed
 
 # ---Setup spindle at speed signals---
 
 #sets spindle-at-speed true
 
-#  Use COMMANDED spindle velocity from LinuxCNC because no spindle encoder was specified
-#  COMMANDED velocity is signed so we use absolute component to remove sign
-
-#net spindle-vel-cmd         =>    abs.spindle.in
-#net absolute-spindle-vel    <=    abs.spindle.out
 
 #******************************
 # connect miscellaneous signals
@@ -368,6 +340,6 @@ net estop-out     <=  iocontrol.0.user-enable-out
 net estop-out     =>  iocontrol.0.emc-enable-in
 
 #  ---manual tool change signals---
-loadusr -W hal_manualtoolchange
+#loadusr -W hal_manualtoolchange
 
-
+#net tool_changed hm2_5i25.0.7i77.0.0.input-16
