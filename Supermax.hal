@@ -13,8 +13,12 @@ setp     hm2_5i25.0.watchdog.timeout_ns 10000000
 loadrt pid names=pid.x,pid.y,pid.z
 #loadrt abs names=abs.spindle
 #loadrt lowpass names=lowpass.spindle
-loadrt or2
+loadrt or2 count=2
+loadrt not
+
 addf or2.0 servo-thread
+addf or2.1 servo-thread
+addf not.0 servo-thread
 
 addf hm2_5i25.0.read servo-thread
 addf motion-command-handler servo-thread
@@ -229,6 +233,7 @@ setp    hm2_5i25.0.encoder.02.index-mask 0
 setp    hm2_5i25.0.encoder.02.index-mask-invert 0
 setp    hm2_5i25.0.encoder.02.scale  [JOINT_2]ENCODER_SCALE
 
+net machine-is-enabled hm2_5i25.0.7i77.0.0.output-04
 net z-pos-fb               <=  hm2_5i25.0.encoder.02.position
 net z-vel-fb               <=  hm2_5i25.0.encoder.02.velocity
 net z-pos-fb               =>  joint.2.motor-pos-fb
@@ -342,4 +347,5 @@ net estop-out     =>  iocontrol.0.emc-enable-in
 #  ---manual tool change signals---
 #loadusr -W hal_manualtoolchange
 
-#net tool_changed hm2_5i25.0.7i77.0.0.input-16
+setp hm2_5i25.0.7i77.0.0.output-07-invert True
+

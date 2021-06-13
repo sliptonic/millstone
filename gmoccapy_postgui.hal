@@ -12,9 +12,15 @@ net tooloffset-z gmoccapy.tooloffset-z <= motion.tooloffset.z
 
 #pins for manual tool change
 net tool-change      gmoccapy.toolchange-change   <=  iocontrol.0.tool-change 
-net tool-changed     gmoccapy.toolchange-changed  <=  iocontrol.0.tool-changed
+#net tool-changed     gmoccapy.toolchange-changed  <=  iocontrol.0.tool-changed
+net itool-changed     or2.1.in0  <=  gmoccapy.toolchange-changed
+net etool-changed     or2.1.in1  <=  hm2_5i25.0.7i77.0.0.input-16
+net tool-changed      iocontrol.0.tool-changed <= or2.1.out
+
 net tool-prep-number gmoccapy.toolchange-number   <=  iocontrol.0.tool-prep-number
 net tool-prepare-loopback iocontrol.0.tool-prepare => iocontrol.0.tool-prepared
+
+net tool-change hm2_5i25.0.7i77.0.0.output-07
 
 net spindle-at-speed => vfd.spindle-at-speed
 setp vfd.enable 1
