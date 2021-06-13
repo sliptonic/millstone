@@ -273,6 +273,31 @@ net a-home-sw     =>  joint.3.home-sw-in
 net a-neg-limit     =>  joint.3.neg-lim-sw-in
 net a-pos-limit     =>  joint.3.pos-lim-sw-in
 
+#*******************
+#  AXIS C
+#*******************
+
+# Step Gen signals/setup
+
+setp   hm2_5i25.0.stepgen.04.dirsetup        [JOINT_4]DIRSETUP
+setp   hm2_5i25.0.stepgen.04.dirhold         [JOINT_4]DIRHOLD
+setp   hm2_5i25.0.stepgen.04.steplen         [JOINT_4]STEPLEN
+setp   hm2_5i25.0.stepgen.04.stepspace       [JOINT_4]STEPSPACE
+setp   hm2_5i25.0.stepgen.04.position-scale  [JOINT_4]STEP_SCALE
+setp   hm2_5i25.0.stepgen.04.step_type        0
+setp   hm2_5i25.0.stepgen.04.control-type     0
+setp   hm2_5i25.0.stepgen.04.maxaccel         [JOINT_4]STEPGEN_MAXACCEL
+setp   hm2_5i25.0.stepgen.04.maxvel           [JOINT_4]STEPGEN_MAXVEL
+
+net c-pos-fb     joint.4.motor-pos-fb   <=  hm2_5i25.0.stepgen.04.position-fb
+net c-pos-cmd    joint.4.motor-pos-cmd  =>  hm2_5i25.0.stepgen.04.position-cmd
+net c-enable     joint.4.amp-enable-out =>  hm2_5i25.0.stepgen.04.enable
+
+# ---setup home / limit switch signals---
+
+net c-home-sw     =>  joint.4.home-sw-in
+net c-neg-limit     =>  joint.4.neg-lim-sw-in
+net c-pos-limit     =>  joint.4.pos-lim-sw-in
 
 #*******************
 #  SPINDLE S
@@ -314,6 +339,13 @@ net a-is-homed            halui.joint.3.is-homed
 net jog-a-pos             halui.axis.a.plus
 net jog-a-neg             halui.axis.a.minus
 net jog-a-analog          halui.axis.a.analog
+
+net joint-select-e        halui.axis.c.select
+net c-is-homed            halui.joint.4.is-homed
+net jog-c-pos             halui.axis.c.plus
+net jog-c-neg             halui.axis.c.minus
+net jog-c-analog          halui.axis.c.analog
+
 net jog-selected-pos      halui.axis.selected.plus
 net jog-selected-neg      halui.axis.selected.minus
 net spindle-manual-cw     halui.spindle.0.forward
