@@ -381,3 +381,8 @@ net estop-out     =>  iocontrol.0.emc-enable-in
 
 setp hm2_5i25.0.7i77.0.0.output-07-invert True
 
+
+#net x-offset motion.analog-out-00 => xyzac-trt-kins.x-rot-point
+#net y-offset motion.analog-out-01 => xyzac-trt-kins.y-rot-point
+#net z-offset motion.analog-out-02 => xyzac-trt-kins.z-rot-point
+
