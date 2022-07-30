@@ -1,0 +1,99 @@
+G21 F400
+#1000 = 30 ;distance between probe points
+
+; Assume the A axis is roughly level and C is roughly aligned with slot pointing -X
+; Assume the probe is positioned by the mark and in the slot
+
+;Find the middle of the slot
+G91 G38.3 Y10
+#1001=[#5062 - 4.25]  ;save Y slot center position
+G90 G0 Y[#1001]
+
+#1008=#5066  ;current C position
+
+;probe at X-[#1000/[2]]
+G91 G0 X-[#1000/[2]]
+G91 G38.2 Y10 F400
+G90 G0 Y[#5062-.254]
+G91 G38.2 F5 Y.5
+#1002=#5062
+
+;return to Y center
+G90 G0 Y[#1001]
+
+;probe at X[#1000]
+G91 G0 X[#1000]
+G91 G38.2 Y10 F400
+G90 G0 Y[#5062-.254]
+G91 G38.2 F5 Y.5
+#1003=#5062
+
+;return to Y center and move probe up
+G90 G0 Y[#1001] 
+G90 G0 Z[#5063+10]
+
+;calculate rotation angle
+#1009=[#1003-#1002]
+#1010=[atan[#1009]/[#1000]]
+(debug,Ang #1010)
+
+G90
+;rotate C axis to level
+G0C[#1010+#1008]
+
+
+
+
+
+
+;Level the A axis
+
+#1000 = 60 ;distance between probe points
+
+G90 G0 Y[#1001] 
+
+;G91 G38.3 Z.00001
+#1001=#5063  ;save current Z height
+#1008=#5064
+
+#1009=#1001 ; save curent Y position
+(debug,yprobe [#1009 - [#1000/[2]]])
+
+;probe at Y[#1009 - [#1000/[2]]]
+G90
+G0 Y[#1009 - [#1000/[2]]]
+G91 G38.2 Z-15 F400
+G90 G0 Z[#5063+.254]
+G91 G38.2 F5 Z-.5
+#1002=#5063
+
+;return to Z
+G90 G0 Z#1001
+
+;probe at Y[#1009 + [#1000/[2]]]
+G0 Y[#1009 + [#1000/[2]]]   ;Y[#1000/[2]]
+G91 G38.2 Z-15 F400
+G90 G0 Z[#5063+.254]
+G91 G38.2 F5 Z-.5
+#1003=#5063
+
+;return to z and move probe away
+G90 G0 Z[#1001 + 10]
+G91 G0X-20
+
+;calculate rotation angle
+#1009=[#1002-#1003]
+#1010=[atan[#1009]/[#1000]]
+(debug,Ang #1010)
+
+;Final Pose
+;Final C axis position
+G91 G0 C-30
+
+G90
+;rotate A axis to level
+G0A[#1010+#1008]
+
+G59
+G90
+M2

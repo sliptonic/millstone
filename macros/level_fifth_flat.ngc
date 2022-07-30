@@ -1,0 +1,178 @@
+(MSG, Verify that table is roughly level, slot points -X, probe over startpoint)
+M0
+
+G21 F400
+
+#<balldiameter> = 2
+#<backoffdistance> = 0.8
+
+; measured offsets from the probe corner to center of rotation
+#<xcorneroffset> = -80.75
+#<ycorneroffset> = -49.00
+#<zcorneroffset> = 33.00
+
+; These numbered parameters are saved to the .var file and reloaded
+;#4000: x rotation offset
+;#4001: y rotation offset
+;#4002: z rotation offset
+
+;assume probe is < 10mm over starting fiducial
+G91 G38.3 Z-10
+G90 G38.4 F50 Z[#5063+#<backoffdistance>]
+G91 G38.2 F5 Z-[#<backoffdistance>]
+G28.1 (store current absolute positions in 5161-5166)
+#<zcorner>=#5063
+#4002= [[#5163] - [#<zcorneroffset>]]
+
+#<xstart>=[#5061]
+#<cstart>=[#5066]
+#<astart>=[#5064]
+#<ystart>=[#5062]
+
+;probe left side
+G90 G0 Z[#<zcorner> + [10]]
+G90 G0 X[#<xstart> - [20]]
+G90 G0 Z[#<zcorner> - [5]]
+G91 G38.3 X20 F400
+G90 G38.4 F50 X[#5061-#<backoffdistance>]
+G91 G38.2 F5 X[#<backoffdistance>]
+#<xcorner>=[#5061 + [#<balldiameter>/2]]
+
+G28.1 (store current absolute positions in 5161-5166)
+#4000 = [[#5161] - [#<xcorneroffset>]]
+
+G90 G0 X[#<xcorner> - [5]]
+
+;probe front side
+G90 G0 Z[#<zcorner> + [10]]
+G90 G0 Y[#<ystart> - [20]]
+G90 G0 X[#<xcorner>+ [5]]
+G90 G0 Z[#<zcorner> - [16]]
+
+G91 G38.3 Y20 F400
+G90 G38.4 F50 Y[#5062-#<backoffdistance>]
+G91 G38.2 F5 Y[#<backoffdistance> * 2]
+#<ycorner>=[#5062 + [#<balldiameter>/2]]
+
+G28.1 (store current absolute positions in 5161-5166)
+#4001 = [[#5162] - [#<ycorneroffset>]]
+
+G90 G0 Y[#<ycorner> - [5]]
+
+G90 G0 Z[#<zcorner> + [10]]
+; G90 G0 X[#<xcorner>] Y[#<ycorner>]
+
+;calculate expected rotationcenter
+#<xRotationCenter> = [#<xcorner> - [#<xcorneroffset>]]
+#<yRotationCenter> = [#<ycorner> - [#<ycorneroffset>]]
+#<zRotationCenter> = [#<zcorner> - [#<zcorneroffset>]]
+
+(debug,xRotationCenter #4000)
+(debug,yRotationCenter #4001)
+(debug,zRotationCenter #4002)
+M1
+
+; move to probing position for AC leveling
+G90 G0 Z[#<zRotationCenter> + 60]
+G90 G0 X[#<xRotationCenter> - 32] Y[#<yRotationCenter>]
+G90 G0 Z[#<zRotationCenter> + 44]
+
+#<probexspread> = 30 ;distance between probe points
+#<probeyspread> = 60 ;distance between probe points
+#<slotwidth> = 8.5
+
+; Assume the A axis is roughly level and C is roughly aligned with slot pointing -X
+; Assume the probe is positioned by the mark and in the slot
+
+;Find the middle of the slot
+G91 G38.3 Y10 F400
+#<xstart>=[#5061]
+#<zstart>=[#5063]
+#<cstart>=[#5066]
+#<astart>=[#5064]
+#<ystart>=[[#5062] - [#<slotwidth>/2]]  
+
+G90 G0 Y[#<ystart>]
+
+;probe at X - probexspread/2
+G90 G0 X[[#<xstart>] - [#<probexspread>/[2]]]
+G91 G38.2 Y10 F400
+G90 G38.4 F50 Y[#5062-#<backoffdistance>]
+G91 G38.2 F5 Y[#<backoffdistance>]
+#<yprobe1>=#5062
+
+;return to Y center
+G90 G0 Y[#<ystart>]
+
+;probe at X + probexspread/2 
+G90 G0 X[#<xstart> + [#<probexspread>/[2]]]
+G91 G38.2 Y10 F400
+G90 G38.4 F50 Y[#5062-#<backoffdistance>]
+G91 G38.2 F5 Y[#<backoffdistance>]
+#<yprobe2>=#5062
+
+;return to Y center and move probe up
+G90 G0 Z[#<zstart> + [10]]
+G90 G0 Y[#<ystart>] 
+G90 G0 X[#<xstart>]
+
+;calculate rotation angle
+#1009=[#<yprobe2>-#<yprobe1>]
+#<correctionangle>=[atan[#1009]/[#<probexspread>]]
+#<finalcpos> = [[[#<cstart>] - [#<correctionangle>]] - [30]]
+(debug,CCorrectionAngle #<correctionangle>)
+
+;rotate C axis to level
+;G90 G0 C[#<correctionangle> + #<cstart> ]
+
+M1
+;Level the A axis
+
+;redefine Z above platter
+#<zstart> = [#<zstart> + [10]]
+
+;probe at Y - probeyspread/2
+G90
+G0 Y[#<ystart> - [#<probeyspread> / [2]]]
+G91 G38.2 Z-15 F400
+G90 G38.4 F50 Z[#5063+#<backoffdistance>]
+G91 G38.2 F5 Z-[#<backoffdistance>]
+#1002=#5063
+;return to Z
+G90 G0 Z[#<zstart>]
+
+;probe at Y + probeyspread/2
+G0 Y[#<ystart> + [#<probeyspread> / [2]]]
+G91 G38.2 Z-15 F400
+G90 G38.4 F50 Z[#5063+#<backoffdistance>]
+G91 G38.2 F5 Z-[#<backoffdistance>]
+#1003=#5063
+
+;return to z and move probe away
+G90 G0 Z[#<zstart> + [25]]
+
+;calculate rotation angle
+#1009=[#1002-#1003]
+(debug, 1009 #1009)
+#<acorrection>=[atan[#1009]/[#<probeyspread>]]
+(debug,ACorrectionAngle #<acorrection>)
+
+M1
+;Final Pose
+;Final C axis position
+G90 
+G0 C[#<finalcpos>]
+
+;rotate A axis to level
+G0 A[#<acorrection> + #<astart>]
+
+; Park in a safe locaton
+G90 G0 X[#<xRotationCenter> - 120] Y[#<yRotationCenter> + 100]
+
+(debug, XOFFSET: #5161  YOFFSET: #5162  ZOFFSET: #1012)
+;M68 E0 #4000
+;M68 E1 #4001
+;M68 E2 #4002
+
+G90
+M2

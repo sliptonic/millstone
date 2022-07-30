@@ -1,0 +1,45 @@
+G21 F400
+
+#1000 = 60 ;distance between probe points
+
+G91 G38.3 Z.00001
+#1001=#5063  ;save current Z height
+#1008=#5064
+
+#1009=#5421 ; save curent Y position
+(debug,yprobe [#1009 - [#1000/[2]]])
+
+;probe at Y[#1009 - [#1000/[2]]]
+G90
+G0 Y[#1009 - [#1000/[2]]]
+G91 G38.2 Z-10 F400
+G90 G0 Z[#5063+.254]
+G91 G38.2 F5 Z-.5
+#1002=#5063
+
+;return to Z
+G90 G0 Z#1001
+
+;probe at Y[#1009 + [#1000/[2]]]
+G0 Y[#1009 + [#1000/[2]]]   ;Y[#1000/[2]]
+G91 G38.2 Z-10 F400
+G90 G0 Z[#5063+.254]
+G91 G38.2 F5 Z-.5
+#1003=#5063
+
+;return to z and move probe away
+G90 G0 Z#1001
+G91  G0X-20
+
+;calculate rotation angle
+#1009=[#1002-#1003]
+#1010=[atan[#1009]/[#1000]]
+
+G90
+;rotate A axis to level
+G0A[#1010+#1008]
+
+
+(debug,Ang #1010)
+M2
+
