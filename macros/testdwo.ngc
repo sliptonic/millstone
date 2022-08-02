@@ -1,0 +1,79 @@
+o100 sub
+
+G1 X-53 Y10 Z0
+G1 X-33 Y10 Z0
+G1 X-33 Y-10 Z0
+G1 X-53 Y-10 Z0
+G1 X-53 Y10 Z0
+G1 X-43 Y0 Z0
+
+o100 endsub
+
+G55.5
+M429
+
+G1 Z0 F700
+G1 A0 C0 X0 Y0
+M1
+
+;Trivial Kins
+G1 A0 C0 X-43 Y0
+
+G1 X-53
+G1 X-33
+G1 X-43
+G1 Y10
+G1 Y-10
+G1 Y0
+G1 C30
+G1 C-30
+G1 C0
+o100 call
+
+G1 A-10
+G1 A10
+o100 call
+G1 A0
+
+M1
+;DWO (Dynamic Work offset)
+G1 A0 C0 X-43 Y0
+G55.4
+
+G1 A0
+o100 call
+
+G1 A10
+G55.4
+o100 call
+
+G1 A20 C45
+G55.4
+o100 call
+G55.5
+
+G0 Z0
+G1 A0 C0 X-43 Y0
+
+M1
+;TCPC (Tool Center Point Control)
+G1 Z0
+G1 A0 C0 X-43 Y0
+
+M428
+G1 C90
+
+o100 call
+G1 X-53 Y0 Z0
+G1 X-33 Y0 Z0
+G1 X-43 Y0 Z0
+
+G1 C-90
+G1 A10 C0 X-43 Y0 Z0
+o100 call
+G1 C0
+M429
+
+G1 Z0
+G1 A0 C0 X-43 Y0
+M2

@@ -1,6 +1,5 @@
 ( see https://www.practicalmachinist.com/vb/haas/dwo-macro-4th-axis-347509/ )
 o<dwo_on> sub
-
 (CANCEL G52 OFFSET)
 G52 X0 Y0 Z0
 
@@ -15,6 +14,7 @@ G52 X0 Y0 Z0
 #<x-pos> = #[5221+[#5220-1]*30]
 #<y-pos> = #[5222+[#5220-1]*30]
 #<z-pos> = #[5223+[#5220-1]*30]
+
 
 (CURRENT WORKOFFSET ANGLES TO CALCULATE)
 #<a_deg> = #<_a>
@@ -42,6 +42,10 @@ G52 X0 Y0 Z0
 #<new-z-pos>=[#<new-z-pos> -                 COS[#<a_deg>] * #<dz>]
 #<new-z-pos>=[#<new-z-pos> + #<dz>]
 #<new-z-pos>=[#<new-z-pos> + #<z-rot-point>]
+
+;(debug,old #<x-pos> new #<new-x-pos>)
+;(debug,old #<y-pos> new #<new-y-pos>)
+;(debug,old #<z-pos> new #<new-z-pos>)
 
 (SET DIFF AS G52)
 G52 X[#<new-x-pos>-#<x-pos>] Y[#<new-y-pos>-#<y-pos>] Z[#<new-z-pos>-#<z-pos>]

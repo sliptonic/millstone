@@ -3,16 +3,11 @@
 # overwritten when you run PNCconf again
 
 loadrt [KINS]KINEMATICS
-#autoconverted  trivkins
-#loadrt tp
 loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS  
-#loadrt probe_parport
 loadrt hostmot2
 loadrt hm2_pci config=" num_encoders=5 num_pwmgens=0 num_3pwmgens=0 num_stepgens=5 sserial_port_0=100xxxxx " 
 setp     hm2_5i25.0.watchdog.timeout_ns 10000000
 loadrt pid names=pid.x,pid.y,pid.z
-#loadrt abs names=abs.spindle
-#loadrt lowpass names=lowpass.spindle
 loadrt or2 count=2
 loadrt not
 
@@ -71,7 +66,6 @@ net home-y     <=  hm2_5i25.0.7i77.0.0.input-10-not
 
 # --- MIN-Y ---
 net min-y     <=  hm2_5i25.0.7i77.0.0.input-11-not
-
 # --- MAX-Y ---
 net max-y     <=  hm2_5i25.0.7i77.0.0.input-12-not
 
@@ -136,7 +130,6 @@ net x-vel-fb               <=  hm2_5i25.0.encoder.00.velocity
 net x-pos-fb               =>  joint.0.motor-pos-fb
 net x-index-enable    joint.0.index-enable  <=>  hm2_5i25.0.encoder.00.index-enable
 net x-pos-rawcounts        <=  hm2_5i25.0.encoder.00.rawcounts
-
 # ---setup home / limit switch signals---
 
 net home-x     =>  joint.0.home-sw-in
@@ -266,7 +259,6 @@ setp   hm2_5i25.0.stepgen.03.maxvel           [JOINT_3]STEPGEN_MAXVEL
 net a-pos-fb     joint.3.motor-pos-fb   <=  hm2_5i25.0.stepgen.03.position-fb
 net a-pos-cmd    joint.3.motor-pos-cmd  =>  hm2_5i25.0.stepgen.03.position-cmd
 net a-enable     joint.3.amp-enable-out =>  hm2_5i25.0.stepgen.03.enable
-
 # ---setup home / limit switch signals---
 
 net a-home-sw     =>  joint.3.home-sw-in
@@ -371,7 +363,6 @@ net machine-is-enabled        <=  motion.motion-enabled
 
 #  ---digital in / out signals---
 
-#  ---estop signals---
 
 net estop-out     <=  iocontrol.0.user-enable-out
 net estop-out     =>  iocontrol.0.emc-enable-in
@@ -381,8 +372,9 @@ net estop-out     =>  iocontrol.0.emc-enable-in
 
 setp hm2_5i25.0.7i77.0.0.output-07-invert True
 
+net x-offset motion.analog-out-00 => xyzac-trt-kins.x-rot-point
+net y-offset motion.analog-out-01 => xyzac-trt-kins.y-rot-point
+net z-offset motion.analog-out-02 => xyzac-trt-kins.z-rot-point
 
-#net x-offset motion.analog-out-00 => xyzac-trt-kins.x-rot-point
-#net y-offset motion.analog-out-01 => xyzac-trt-kins.y-rot-point
-#net z-offset motion.analog-out-02 => xyzac-trt-kins.z-rot-point
-
+setp xyzac-trt-kins.y-offset [XYZAC_KINS]Y-OFFSET
+setp xyzac-trt-kins.z-offset [XYZAC_KINS]Z-OFFSET

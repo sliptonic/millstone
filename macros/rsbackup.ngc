@@ -170,8 +170,4 @@ G53 G90 G0 X[#<xRotationCenter>] Y[#<yRotationCenter>]
 
 (debug, Now 100 mm above rotation center.)
 
-M68 E0 Q#4000
-M68 E1 Q#4001
-M68 E2 Q#4002
-
 M2
