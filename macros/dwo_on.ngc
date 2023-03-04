@@ -4,9 +4,9 @@ o<dwo_on> sub
 G52 X0 Y0 Z0
 
 (X,Y,Z ROTARY CENTER)
-#<x-rot-point>=[#<_ini[XYZAC_KINS]X-ROT-POINT>]
-#<y-rot-point>=[#<_ini[XYZAC_KINS]Y-ROT-POINT>]
-#<z-rot-point>=[#<_ini[XYZAC_KINS]Z-ROT-POINT>]
+#<x-rot-point>=#4000 ;[#<_ini[XYZAC_KINS]X-ROT-POINT>]
+#<y-rot-point>=#4001 ;[#<_ini[XYZAC_KINS]Y-ROT-POINT>]
+#<z-rot-point>=#4002 ;[#<_ini[XYZAC_KINS]Z-ROT-POINT>]
 #<dy>=[#<_ini[XYZAC_KINS]Y-OFFSET>]
 #<dz>=[#<_ini[XYZAC_KINS]Z-OFFSET>]
 

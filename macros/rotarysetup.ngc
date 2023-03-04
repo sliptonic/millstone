@@ -75,9 +75,9 @@ G90 G0 Z[#<zcorner> + [10]]
 #<yRotationCenter> = #4001 ; [#<ycorner> - [#<ycorneroffset>]]
 #<zRotationCenter> = #4002 ; [#<zcorner> - [#<zcorneroffset>]]
 
-;(debug,xRotationCenter #<xRotationCenter>)
-;(debug,yRotationCenter #<yRotationCenter>)
-;(debug,zRotationCenter #<zRotationCenter>)
+(debug,xRotationCenter #<xRotationCenter>)
+(debug,yRotationCenter #<yRotationCenter>)
+(debug,zRotationCenter #<zRotationCenter>)
 
 ; move to probing position for AC leveling
 #<zstart> = [#<zRotationCenter> + [60]]
