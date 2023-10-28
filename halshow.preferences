@@ -1,0 +1,33 @@
+# Halshow settings
+# This file is generated automatically.
+wm geometry . 875x617+133+52
+placeFrames 0.3
+set ::ratio 0.3
+set ::old_w_leftf 160
+set ::watchlist {
+    pin+hm2_5i25.0.encoder.00.count
+    pin+hm2_5i25.0.encoder.03.count
+    pin+hm2_5i25.0.encoder.02.count
+    pin+hm2_5i25.0.encoder.02.position
+    pin+hm2_5i25.0.encoder.00.count-latched
+    pin+hm2_5i25.0.encoder.00.index-enable
+    pin+hm2_5i25.0.encoder.00.input-a
+    pin+hm2_5i25.0.encoder.00.input-b
+    pin+hm2_5i25.0.encoder.00.input-index
+    pin+hm2_5i25.0.encoder.00.position
+    pin+hm2_5i25.0.encoder.00.position-latched
+    pin+hm2_5i25.0.encoder.00.quad-error
+    pin+hm2_5i25.0.encoder.00.quad-error-enable
+    pin+hm2_5i25.0.encoder.00.rawcounts
+    pin+hm2_5i25.0.encoder.00.rawlatch
+    pin+hm2_5i25.0.encoder.00.reset
+    pin+hm2_5i25.0.encoder.00.velocity
+    pin+hm2_5i25.0.encoder.00.velocity-rpm
+}
+set ::workmode watchhal
+set ::watchInterval 100
+set ::col1_width 100
+set ::ffmts 
+set ::ifmts 
+set ::alwaysOnTop 0
+set ::autoSaveWatchlist 1
