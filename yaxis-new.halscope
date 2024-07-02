@@ -6,23 +6,23 @@ HPOS 6.231579e-01
 CHAN 1
 CHOFF
 CHAN 2
-PIN joint.2.motor-pos-fb
+PIN joint.1.motor-pos-fb
 VSCALE -8
 VPOS 0.792627
 VOFF 2.636266e+01
 CHOFF
 CHAN 3
-PIN joint.2.vel-cmd
+PIN joint.1.vel-cmd
 VSCALE -1
 VPOS 0.101382
 VOFF 0.000000e+00
 CHAN 4
-PIN joint.2.f-error
+PIN joint.1.f-error
 VSCALE -5
 VPOS 0.622754
 VOFF 0.000000e+00
 CHAN 5
-PIN hm2_5i25.0.7i77.0.1.analogout2
+PIN hm2_5i25.0.7i77.0.1.analogout1
 VSCALE -3
 VPOS 0.724551
 VOFF 0.000000e+00
