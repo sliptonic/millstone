@@ -3,16 +3,11 @@
 # overwritten when you run PNCconf again
 
 loadrt [KINS]KINEMATICS
-#autoconverted  trivkins
-#loadrt tp
 loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS  
-#loadrt probe_parport
 loadrt hostmot2
 loadrt hm2_pci config=" num_encoders=5 num_pwmgens=0 num_3pwmgens=0 num_stepgens=5 sserial_port_0=100xxxxx " 
 setp     hm2_5i25.0.watchdog.timeout_ns 10000000
 loadrt pid names=pid.x,pid.y,pid.z
-#loadrt abs names=abs.spindle
-#loadrt lowpass names=lowpass.spindle
 loadrt or2 count=2
 loadrt not
 
@@ -26,10 +21,7 @@ addf motion-controller servo-thread
 addf pid.x.do-pid-calcs servo-thread
 addf pid.y.do-pid-calcs servo-thread
 addf pid.z.do-pid-calcs servo-thread
-#addf abs.spindle servo-thread
-#addf lowpass.spindle servo-thread
 addf hm2_5i25.0.write         servo-thread
-#addf hm2_5i25.0.pet_watchdog  servo-thread
 
 # external output signals
 
@@ -345,7 +337,5 @@ net estop-out     <=  iocontrol.0.user-enable-out
 net estop-out     =>  iocontrol.0.emc-enable-in
 
 #  ---manual tool change signals---
-#loadusr -W hal_manualtoolchange
-
 setp hm2_5i25.0.7i77.0.0.output-07-invert True
 
