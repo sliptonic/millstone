@@ -5,7 +5,7 @@
 loadrt [KINS]KINEMATICS
 loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS  
 loadrt hostmot2
-loadrt hm2_pci config=" num_encoders=5 num_pwmgens=0 num_3pwmgens=0 num_stepgens=5 sserial_port_0=100xxxxx " 
+loadrt hm2_pci config=" num_encoders=5 num_pwmgens=0 num_3pwmgens=0 num_stepgens=2 sserial_port_0=100xxxxx " 
 setp     hm2_5i25.0.watchdog.timeout_ns 10000000
 loadrt pid names=pid.x,pid.y,pid.z
 loadrt or2 count=2
@@ -246,19 +246,19 @@ net max-z     =>  joint.2.pos-lim-sw-in
 
 # Step Gen signals/setup
 
-setp   hm2_5i25.0.stepgen.03.dirsetup        [JOINT_3]DIRSETUP
-setp   hm2_5i25.0.stepgen.03.dirhold         [JOINT_3]DIRHOLD
-setp   hm2_5i25.0.stepgen.03.steplen         [JOINT_3]STEPLEN
-setp   hm2_5i25.0.stepgen.03.stepspace       [JOINT_3]STEPSPACE
-setp   hm2_5i25.0.stepgen.03.position-scale  [JOINT_3]STEP_SCALE
-setp   hm2_5i25.0.stepgen.03.step_type        0
-setp   hm2_5i25.0.stepgen.03.control-type     0
-setp   hm2_5i25.0.stepgen.03.maxaccel         [JOINT_3]STEPGEN_MAXACCEL
-setp   hm2_5i25.0.stepgen.03.maxvel           [JOINT_3]STEPGEN_MAXVEL
+setp   hm2_5i25.0.stepgen.00.dirsetup        [JOINT_3]DIRSETUP
+setp   hm2_5i25.0.stepgen.00.dirhold         [JOINT_3]DIRHOLD
+setp   hm2_5i25.0.stepgen.00.steplen         [JOINT_3]STEPLEN
+setp   hm2_5i25.0.stepgen.00.stepspace       [JOINT_3]STEPSPACE
+setp   hm2_5i25.0.stepgen.00.position-scale  [JOINT_3]STEP_SCALE
+setp   hm2_5i25.0.stepgen.00.step_type        0
+setp   hm2_5i25.0.stepgen.00.control-type     0
+setp   hm2_5i25.0.stepgen.00.maxaccel         [JOINT_3]STEPGEN_MAXACCEL
+setp   hm2_5i25.0.stepgen.00.maxvel           [JOINT_3]STEPGEN_MAXVEL
 
-net a-pos-fb     joint.3.motor-pos-fb   <=  hm2_5i25.0.stepgen.03.position-fb
-net a-pos-cmd    joint.3.motor-pos-cmd  =>  hm2_5i25.0.stepgen.03.position-cmd
-net a-enable     joint.3.amp-enable-out =>  hm2_5i25.0.stepgen.03.enable
+net a-pos-fb     joint.3.motor-pos-fb   <=  hm2_5i25.0.stepgen.00.position-fb
+net a-pos-cmd    joint.3.motor-pos-cmd  =>  hm2_5i25.0.stepgen.00.position-cmd
+net a-enable     joint.3.amp-enable-out =>  hm2_5i25.0.stepgen.00.enable
 # ---setup home / limit switch signals---
 
 net a-home-sw     =>  joint.3.home-sw-in
@@ -271,19 +271,19 @@ net a-pos-limit     =>  joint.3.pos-lim-sw-in
 
 # Step Gen signals/setup
 
-setp   hm2_5i25.0.stepgen.04.dirsetup        [JOINT_4]DIRSETUP
-setp   hm2_5i25.0.stepgen.04.dirhold         [JOINT_4]DIRHOLD
-setp   hm2_5i25.0.stepgen.04.steplen         [JOINT_4]STEPLEN
-setp   hm2_5i25.0.stepgen.04.stepspace       [JOINT_4]STEPSPACE
-setp   hm2_5i25.0.stepgen.04.position-scale  [JOINT_4]STEP_SCALE
-setp   hm2_5i25.0.stepgen.04.step_type        0
-setp   hm2_5i25.0.stepgen.04.control-type     0
-setp   hm2_5i25.0.stepgen.04.maxaccel         [JOINT_4]STEPGEN_MAXACCEL
-setp   hm2_5i25.0.stepgen.04.maxvel           [JOINT_4]STEPGEN_MAXVEL
+setp   hm2_5i25.0.stepgen.01.dirsetup        [JOINT_4]DIRSETUP
+setp   hm2_5i25.0.stepgen.01.dirhold         [JOINT_4]DIRHOLD
+setp   hm2_5i25.0.stepgen.01.steplen         [JOINT_4]STEPLEN
+setp   hm2_5i25.0.stepgen.01.stepspace       [JOINT_4]STEPSPACE
+setp   hm2_5i25.0.stepgen.01.position-scale  [JOINT_4]STEP_SCALE
+setp   hm2_5i25.0.stepgen.01.step_type        0
+setp   hm2_5i25.0.stepgen.01.control-type     0
+setp   hm2_5i25.0.stepgen.01.maxaccel         [JOINT_4]STEPGEN_MAXACCEL
+setp   hm2_5i25.0.stepgen.01.maxvel           [JOINT_4]STEPGEN_MAXVEL
 
-net c-pos-fb     joint.4.motor-pos-fb   <=  hm2_5i25.0.stepgen.04.position-fb
-net c-pos-cmd    joint.4.motor-pos-cmd  =>  hm2_5i25.0.stepgen.04.position-cmd
-net c-enable     joint.4.amp-enable-out =>  hm2_5i25.0.stepgen.04.enable
+net c-pos-fb     joint.4.motor-pos-fb   <=  hm2_5i25.0.stepgen.01.position-fb
+net c-pos-cmd    joint.4.motor-pos-cmd  =>  hm2_5i25.0.stepgen.01.position-cmd
+net c-enable     joint.4.amp-enable-out =>  hm2_5i25.0.stepgen.01.enable
 
 # ---setup home / limit switch signals---
 
