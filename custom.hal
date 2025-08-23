@@ -20,7 +20,7 @@ net remote-estop estop-latch.0.fault-in <=  hm2_5i25.0.7i77.0.0.input-00
 net coolant-flood hm2_5i25.0.7i77.0.0.output-05
 
 # --- VFD modbus ---
-loadusr -Wn  vfd hy_vfd -n vfd -d /dev/ttyUSB0 -p none -r 19200
+loadusr -Wn  vfd hy_vfd -n vfd -d /dev/ttyUSB0 -p none -r 9600 -s 1
 
 setp scale.0.gain 0.645
 setp scale.0.offset 0.0

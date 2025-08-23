@@ -2,3 +2,7 @@ linuxcnc.var
 linuxcnc.var.bak
 *.swo
 *.swp
+*.bak
+*.var
+autosave.*
+

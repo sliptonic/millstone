@@ -21,10 +21,7 @@ addf motion-controller servo-thread
 addf pid.x.do-pid-calcs servo-thread
 addf pid.y.do-pid-calcs servo-thread
 addf pid.z.do-pid-calcs servo-thread
-#addf abs.spindle servo-thread
-#addf lowpass.spindle servo-thread
 addf hm2_5i25.0.write         servo-thread
-#addf hm2_5i25.0.pet_watchdog  servo-thread
 
 # external output signals
 
@@ -66,6 +63,7 @@ net home-y     <=  hm2_5i25.0.7i77.0.0.input-10-not
 
 # --- MIN-Y ---
 net min-y     <=  hm2_5i25.0.7i77.0.0.input-11-not
+
 # --- MAX-Y ---
 net max-y     <=  hm2_5i25.0.7i77.0.0.input-12-not
 
@@ -130,6 +128,7 @@ net x-vel-fb               <=  hm2_5i25.0.encoder.00.velocity
 net x-pos-fb               =>  joint.0.motor-pos-fb
 net x-index-enable    joint.0.index-enable  <=>  hm2_5i25.0.encoder.00.index-enable
 net x-pos-rawcounts        <=  hm2_5i25.0.encoder.00.rawcounts
+
 # ---setup home / limit switch signals---
 
 net home-x     =>  joint.0.home-sw-in
@@ -363,6 +362,7 @@ net machine-is-enabled        <=  motion.motion-enabled
 
 #  ---digital in / out signals---
 
+#  ---estop signals---
 
 net estop-out     <=  iocontrol.0.user-enable-out
 net estop-out     =>  iocontrol.0.emc-enable-in
