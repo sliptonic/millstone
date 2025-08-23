@@ -1,0 +1,80 @@
+o100 sub
+
+G0 Z0
+G0  X0 Y-34
+G0 Z-10
+G02 X0 Y-54 I0  J-10
+G02 X0 Y-34 I0 J10
+G0 Z0
+
+o100 endsub
+
+; Turn off all compensation
+G55.5
+M429
+
+G1 Z0 F700
+G1 A0 C0 X0 Y0
+M1
+
+;Trivial Kins
+G1 A0 C0 X0 Y-44
+
+G1 X-10
+G1 X10
+G1 X0
+G1 Y-34
+G1 Y-54
+G1 Y-44
+G1 C20
+G1 C-20
+G1 C0
+o100 call
+
+G1 A-10
+G1 A10
+o100 call
+G1 A0
+
+M1
+;DWO (Dynamic Work offset)
+G1 A0 C0 X0 Y-44
+G55.4
+
+G1 A0
+o100 call
+
+G1 A10
+G55.4
+o100 call
+
+G1 A20
+G55.4
+o100 call
+G55.5
+
+G0 Z0
+G1 A0 C0 X0 Y-44
+
+M1
+;TCPC (Tool Center Point Control)
+G1 Z0
+G1 A0 C0 X0 Y-44
+
+M428
+G1 C90
+
+o100 call
+G1 X-10 Y-44 Z0
+G1 X10 Y-44 Z0
+G1 X0 Y-44 Z0
+
+G1 C-90
+G1 A10 C0 X0 Y-44 Z0
+o100 call
+G1 C0
+M429
+
+G1 Z0
+G1 A0 C0 X0 Y0
+M2

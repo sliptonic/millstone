@@ -1,0 +1,4 @@
+#!/bin/bash
+offset=$1
+halcmd setp xyzac-trt-kins.y-rot-point $offset
+exit 0
