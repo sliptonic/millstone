@@ -378,3 +378,4 @@ net z-offset motion.analog-out-02 => xyzac-trt-kins.z-rot-point
 
 setp xyzac-trt-kins.y-offset [XYZAC_KINS]Y-OFFSET
 setp xyzac-trt-kins.z-offset [XYZAC_KINS]Z-OFFSET
+setp xyzac-trt-kins.conventional-directions 1
