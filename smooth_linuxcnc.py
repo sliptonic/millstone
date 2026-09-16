@@ -1,0 +1,1 @@
+/home/brad/smooth-linuxcnc/smooth_linuxcnc.py

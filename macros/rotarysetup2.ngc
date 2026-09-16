@@ -12,9 +12,9 @@ G21 F400
 #<tableClearance> = 55 ;distance above zRotationCenter to clear table by 5mm
 
 ; measured offsets from the probe corner to center of rotation
-#<xcorneroffset> = -82.0 ;-80.75
-#<ycorneroffset> = -48.75 ;-49.00
-#<zcorneroffset> = 33.00
+#<xcorneroffset> = -81.399 ;-82.0 -80.75
+#<ycorneroffset> = -49.034;  -48.75 -49.00
+#<zcorneroffset> = 33.07;  33.00
 
 #<probexspread> = 30 ;distance between probe points
 #<probeyspread> = 60 ;distance between probe points
@@ -184,5 +184,10 @@ G0 C[#<finalcpos>]
 G90
 G53 G0 Z[#<zRotationCenter> + [#<tableClearance>]]
 G53 G0 X[#<xRotationCenter>] Y[#<yRotationCenter>]
+
+M68 E0 Q#4000
+M68 E1 Q#4001
+M68 E2 Q#4002
+
 
 M2

@@ -1,11 +1,25 @@
-O<probe_left> sub 
+O<probe_left> sub
+
+#<probe_diameter> = 2.0
+#<probe_radius>   = [#<probe_diameter> / 2.0]
+#<edge_offset>    = 5.0
+#<backoff>        = 0.254
+
 G21
+
+; Fast probe
 G91 G38.2 F400 X+10
-G90 G0 X[#5061-0.254]
+
+; Back off
+G90 G0 X[#5061-#<backoff>]
+
+; Slow probe
 G91 G38.2 F5 X+0.5
-G90 G0 X[#5061-5+[1]]
-(debug,Spindle center is X-5 from the edge)
+
+; Retract to desired offset from edge
+G90 G0 X[#5061-[#<edge_offset>-#<probe_radius>]]
+
+(debug,Spindle center is X-#<edge_offset> from the edge)
+
 O<probe_left> endsub
-M2 
-
-
+M2

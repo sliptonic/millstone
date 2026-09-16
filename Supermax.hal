@@ -10,6 +10,7 @@ setp     hm2_5i25.0.watchdog.timeout_ns 10000000
 loadrt pid names=pid.x,pid.y,pid.z
 loadrt or2 count=2
 loadrt not
+loadusr -W mtconnect-agent
 
 addf or2.0 servo-thread
 addf or2.1 servo-thread
@@ -376,6 +377,6 @@ net x-offset motion.analog-out-00 => xyzac-trt-kins.x-rot-point
 net y-offset motion.analog-out-01 => xyzac-trt-kins.y-rot-point
 net z-offset motion.analog-out-02 => xyzac-trt-kins.z-rot-point
 
-setp xyzac-trt-kins.y-offset [XYZAC_KINS]Y-OFFSET
-setp xyzac-trt-kins.z-offset [XYZAC_KINS]Z-OFFSET
-setp xyzac-trt-kins.conventional-directions 1
+setp xyzac-trt-kins.y-offset [XYZAC_KINS]Y_OFFSET
+setp xyzac-trt-kins.z-offset [XYZAC_KINS]Z_OFFSET
+#setp xyzac-trt-kins.conventional-directions 1
